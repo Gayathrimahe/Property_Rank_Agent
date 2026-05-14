@@ -1,0 +1,8 @@
+.env
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+# data files — keep locally, do not commit
+# ignore CSV exports but keep the folder
+data/*.csv

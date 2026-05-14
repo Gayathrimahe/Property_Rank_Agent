@@ -1,0 +1,53 @@
+name: Property_Agent — Analyze + Email
+
+on:
+  # ── daily at 9 AM CST (15:00 UTC) ─────────────────────────────────────────
+  schedule:
+    - cron: '0 15 * * 1-5'    # weekdays only — Mon to Fri
+    # - cron: '0 15 * * *'    # every day including weekends (uncomment if needed)
+
+  # ── runs when you push a new CSV to data/ ─────────────────────────────────
+  push:
+    paths:
+      - 'data/*.csv'
+
+  # ── manual run from GitHub Actions UI ─────────────────────────────────────
+  workflow_dispatch:
+    inputs:
+      csv_file:
+        description: 'CSV filename in data/ folder'
+        default: 'loopnet_listings.csv'
+      recipients:
+        description: 'Recipient emails (comma-separated)'
+        default: 'team@yourcompany.com'
+
+jobs:
+  analyze-and-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Property_Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SMTP_USER:      ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD:  ${{ secrets.SMTP_PASSWORD }}
+        run: |
+          python orchestrator.py
+
+      - name: Upload reports as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: proprank-reports-${{ github.run_number }}
+          path: reports/
+          retention-days: 30
