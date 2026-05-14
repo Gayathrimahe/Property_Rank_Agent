@@ -44,6 +44,9 @@ jobs:
           SMTP_PASSWORD:  ${{ secrets.SMTP_PASSWORD }}
           RECIPIENTS:     ${{ secrets.RECIPIENTS }}
         run: |
+          echo "RECIPIENTS is set: ${{ secrets.RECIPIENTS != '' }}"
+          echo "Checking env..."
+          python -c "import os; print('RECIPIENTS:', 'SET' if os.environ.get('RECIPIENTS') else 'NOT SET')"
           python orchestrator.py
 
       - name: Upload reports as artifacts
