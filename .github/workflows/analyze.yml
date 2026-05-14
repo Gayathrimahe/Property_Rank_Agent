@@ -42,6 +42,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SMTP_USER:      ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD:  ${{ secrets.SMTP_PASSWORD }}
+          RECIPIENTS:     ${{ secrets.RECIPIENTS }}
         run: |
           python orchestrator.py
 
