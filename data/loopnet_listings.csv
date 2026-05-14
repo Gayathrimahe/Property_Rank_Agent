@@ -1,0 +1,4 @@
+﻿Date,Address,Neighborhood,Sale_type,Property_type,Building_size_sf,Building_class,Year_built/Renovated,Price,Price_per_sf,Tenancy,Building_height_stories,Typical_floor_size_sf,Lot_size_ac,Zoning,Parking
+05/14/2026,100 Test Blvd,CA 94597,Owner User,Office,5000,B,2000,2000000,400.00,Single,2,2500,0.40,O-1,20 Spaces
+05/14/2026,200 Sample Ave,CA 94597,Owner User,Office,3000,C,1990,1200000,400.00,Single,1,3000,0.30,O-2,15 Spaces
+05/14/2026,300 Demo St,CA 94597,Owner User,Office,8000,A,2015,3500000,437.50,Multiple,3,4000,0.50,O-1,30 Spaces
