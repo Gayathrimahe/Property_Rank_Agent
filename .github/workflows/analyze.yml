@@ -44,13 +44,7 @@ jobs:
           SMTP_PASSWORD:  ${{ secrets.SMTP_PASSWORD }}
           RECIPIENTS:     ${{ secrets.RECIPIENTS }}
         run: |
-         python -c "
-            import os
-            r = os.environ.get('RECIPIENTS', 'NOT_FOUND')
-            print('RECIPIENTS length:', len(r))
-            print('RECIPIENTS empty:', r == '')
-            print('RECIPIENTS value:', 'SET' if r and r != 'NOT_FOUND' else 'EMPTY OR MISSING')
-            "
+          python -c "import os; r=os.environ.get('RECIPIENTS',''); print('RECIPIENTS:', 'SET='+str(len(r))+'chars' if r else 'EMPTY')"
           python orchestrator.py
 
       - name: Upload reports as artifacts
