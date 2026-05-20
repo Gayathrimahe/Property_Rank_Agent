@@ -2,8 +2,8 @@ name: Property_Agent — Analyze + Email
 
 on:
   # ── daily at 9 AM CST (15:00 UTC) ─────────────────────────────────────────
-  schedule:
-    - cron: '0 15 * * 1-5'    # weekdays only — Mon to Fri
+  #schedule:
+  #  - cron: '0 15 * * 1-5'    # weekdays only — Mon to Fri
     # - cron: '0 15 * * *'    # every day including weekends (uncomment if needed)
 
   # ── runs when you push a new CSV to data/ ─────────────────────────────────
